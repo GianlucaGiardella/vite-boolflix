@@ -1,18 +1,17 @@
 <script>
-import store from "../store";
-import CardList from "./Movies-Series.vue";
+import CardList from "./CardList.vue";
+
 export default {
-  data() {
-    return {
-      store,
-      CardList,
-    };
+  components: {
+    CardList,
   },
 };
 </script>
 
 <template>
-  <CardList />
+  <main>
+    <CardList />
+  </main>
 </template>
 
 <style lang="scss" scoped></style>
