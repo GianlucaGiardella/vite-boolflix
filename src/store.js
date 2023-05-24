@@ -1,3 +1,7 @@
 import { reactive } from "vue";
 
-export default reactive({});
+export default reactive({
+  imputSearch: "",
+  movies: [],
+  series: [],
+});
