@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <Header @search="getResults" />
+  <Header @searchRequest="getResults" />
   <Main />
 </template>
 
