@@ -1,16 +1,16 @@
 <script>
-import CardList from "./CardList.vue";
+import CardsLists from "./CardsLists.vue";
 
 export default {
   components: {
-    CardList,
+    CardsLists,
   },
 };
 </script>
 
 <template>
   <main>
-    <CardList />
+    <CardsLists />
   </main>
 </template>
 
