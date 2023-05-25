@@ -18,13 +18,9 @@ export default {
 <template>
   <header>
     <h1>boolflix</h1>
-    <form>
-      <input
-        type="text"
-        v-model="store.imputSearch"
-        @keyup.enter="searchInput"
-      />
-      <button @click="searchInput">Cerca</button>
+    <form @submit.prevent="searchInput">
+      <input type="text" v-model="store.imputSearch" />
+      <button>Cerca</button>
     </form>
   </header>
 </template>
