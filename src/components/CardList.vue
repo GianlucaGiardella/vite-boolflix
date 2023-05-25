@@ -17,14 +17,12 @@ export default {
 
 <template>
   <ul>
-    <Card
-      v-for="card in store.movies"
-      :key="card.id"
-      :movieTitle="card.title"
-      :movieOriginalTitle="card.original_title"
-      :movieLanguage="card.original_language"
-      :movieVote="card.vote_average"
-    />
+    <li><h2>Movies</h2></li>
+    <Card v-for="card in store.movies" :key="card.id" :cardObj="card" />
+  </ul>
+  <ul>
+    <li><h2>Series</h2></li>
+    <Card v-for="card in store.series" :key="card.id" :cardObj="card" />
   </ul>
 </template>
 
