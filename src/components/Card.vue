@@ -1,20 +1,17 @@
 <script>
 export default {
   props: {
-    movieTitle: String,
-    movieOriginalTitle: String,
-    movieLanguage: String,
-    movieVote: Number,
+    cardObj: Object,
   },
 };
 </script>
 
 <template>
   <li>
-    {{ movieTitle }}
-    {{ movieOriginalTitle }}
-    <lang-flag :iso="movieLanguage" :squared="false" />
-    {{ movieVote }}
+    {{ cardObj.title || cardObj.name }}
+    {{ cardObj.original_title || cardObj.original_name }}
+    <lang-flag :iso="cardObj.original_language" :squared="false" />
+    {{ cardObj.vote_average }}
   </li>
 </template>
 
