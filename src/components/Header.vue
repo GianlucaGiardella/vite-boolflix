@@ -6,18 +6,22 @@ export default {
       store,
     };
   },
+
+  emits: ["search"],
+
+  methods: {
+    searchInput() {
+      this.$emit("searchRequest", this.store.imputSearch);
+    },
+  },
 };
 </script>
 
 <template>
   <header>
-    <img src="" alt="" />
-    <input
-      type="text"
-      v-model="store.imputSearch"
-      @keyup.enter="$emit('searchMovies', store.imputSearch)"
-    />
-    <button @click="$emit('searchMovies', store.imputSearch)">Cerca</button>
+    <h1>boolflix</h1>
+    <input type="text" v-model="store.imputSearch" @keyup.enter="searchInput" />
+    <button @click="searchInput">Cerca</button>
   </header>
 </template>
 
