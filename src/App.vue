@@ -15,20 +15,27 @@ export default {
     Main,
   },
   methods: {
-    getMovies(inputSearch) {
+    getResults(inputSearch) {
       axios
         .get(
           "https://api.themoviedb.org/3/search/movie?api_key=4ffc9c2cabb7a0565658597d4cddb688&query=" +
             inputSearch
         )
         .then((response) => (this.store.movies = response.data.results));
+
+      axios
+        .get(
+          "https://api.themoviedb.org/3/search/tv?api_key=4ffc9c2cabb7a0565658597d4cddb688&query=" +
+            inputSearch
+        )
+        .then((response) => (this.store.series = response.data.results));
     },
   },
 };
 </script>
 
 <template>
-  <Header @searchMovies="getMovies" />
+  <Header @search="getResults" />
   <Main />
 </template>
 
