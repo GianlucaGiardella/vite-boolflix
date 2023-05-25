@@ -7,8 +7,6 @@ export default {
     };
   },
 
-  emits: ["search"],
-
   methods: {
     searchInput() {
       this.$emit("searchRequest", this.store.imputSearch);
