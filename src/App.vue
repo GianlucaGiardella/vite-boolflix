@@ -43,4 +43,36 @@ export default {
   <Main />
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+</style>
