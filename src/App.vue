@@ -74,6 +74,6 @@ picture,
 svg,
 video {
   display: block;
-  max-width: 100%;
+  max-height: 100%;
 }
 </style>
