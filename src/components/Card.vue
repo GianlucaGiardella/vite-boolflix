@@ -21,6 +21,13 @@ export default {
   <li class="card">
     <div class="card-side front">
       <img
+        v-if="cardObj.poster_path === null"
+        src="../assets/img/no-img.svg.png"
+        :alt="cardObj.title || cardObj.name"
+        class="no-img"
+      />
+      <img
+        v-else
         :src="imgSrc + cardObj.poster_path"
         :alt="cardObj.title || cardObj.name"
       />
@@ -85,7 +92,9 @@ export default {
 
 .card-side.front {
   img {
-    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 
