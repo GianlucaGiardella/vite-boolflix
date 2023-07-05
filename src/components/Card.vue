@@ -1,11 +1,17 @@
 <script>
 import LangFlag from "vue-lang-code-flags/LangFlag.vue";
+import store from "../store.js";
+import axios from "axios";
+
 export default {
   data() {
     return {
+      store,
       imgSrc: "https://image.tmdb.org/t/p/w342",
       stars: 5,
       starsNumber: Math.round(this.cardObj.vote_average / 2),
+      arrGenres: [],
+      arrActors: [],
     };
   },
   components: {
@@ -13,6 +19,26 @@ export default {
   },
   props: {
     cardObj: Object,
+  },
+  created() {
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${this.cardObj.id}`, {
+        params: {
+          api_key: this.store.apiKey,
+        },
+      })
+      .then((response) => (this.arrGenres = response.data.genres));
+
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${this.cardObj.id}/credits`, {
+        params: {
+          api_key: this.store.apiKey,
+        },
+      })
+      .then((response) => {
+        response.data.cast.splice(5);
+        this.arrActors = response.data.cast;
+      });
   },
 };
 </script>
@@ -36,16 +62,19 @@ export default {
       <h3>
         Titolo: <span>{{ cardObj.title || cardObj.name }}</span>
       </h3>
+
       <h3>
         Titolo originale:
         <span>{{ cardObj.original_title || cardObj.original_name }}</span>
       </h3>
+
       <p>
         Lingua:
         <span>
           <LangFlag :iso="cardObj.original_language" :squared="false"
         /></span>
       </p>
+
       <p>
         Voto:
         <span
@@ -58,6 +87,19 @@ export default {
             :icon="['far', 'star']"
         /></span>
       </p>
+
+      <ul>
+        <li><h2>Genres</h2></li>
+        <li v-for="genre in arrGenres" :key="genre.id">{{ genre.name }}</li>
+      </ul>
+
+      <ul>
+        <li><h2>Actors</h2></li>
+        <li v-for="actor in arrActors" :key="actor.casst_id">
+          {{ actor.name }}
+        </li>
+      </ul>
+
       <p class="description">
         Overview: <span>{{ cardObj.overview }}</span>
       </p>
@@ -102,7 +144,7 @@ export default {
   transform: rotateY(-180deg);
   padding: 1rem;
   display: grid;
-  grid-template-rows: repeat(7, minmax(0, 3rem));
+  grid-template-rows: repeat(9, minmax(0, 3rem));
   gap: 1rem;
   color: white;
   background-color: #141414;
@@ -110,15 +152,21 @@ export default {
 }
 
 .card-side.back {
-  span {
+  span,
+  li {
     font-size: 0.8rem;
     color: whitesmoke;
     opacity: 0.8;
   }
 
-  .description {
-    grid-row: 5 / 8;
+  h2 {
+    color: white;
+    font-size: 1rem;
   }
+
+  // .description {
+  //   grid-row: 5 / 8;
+  // }
 
   .flag-icon-undefined {
     background-image: url("../assets/img/no-flag.svg.png");

@@ -19,7 +19,7 @@ export default {
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
           params: {
-            api_key: "4ffc9c2cabb7a0565658597d4cddb688",
+            api_key: this.store.apiKey,
             query: inputSearch,
           },
         })
@@ -28,7 +28,7 @@ export default {
       axios
         .get("https://api.themoviedb.org/3/search/tv", {
           params: {
-            api_key: "4ffc9c2cabb7a0565658597d4cddb688",
+            api_key: this.store.apiKey,
             query: inputSearch,
           },
         })
